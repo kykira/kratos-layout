@@ -1,7 +1,7 @@
 syntax = "proto3";
 package kratos.api;
 
-option go_package = "github.com/go-kratos/kratos-layout/internal/conf;conf";
+option go_package = "github.com/kykira/kratos-layout/internal/conf;conf";
 
 import "google/protobuf/duration.proto";
 
@@ -21,8 +21,14 @@ message Server {
     string addr = 2;
     google.protobuf.Duration timeout = 3;
   }
+  message RPCX {
+    string network = 1;
+    string addr = 2;
+    google.protobuf.Duration timeout = 3;
+  }
   HTTP http = 1;
   GRPC grpc = 2;
+  RPCX rpcx = 3;
 }
 
 message Data {
