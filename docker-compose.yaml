@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+
+  kltest:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    image: kltest
+    restart: always
+    network_mode: host
+    volumes:
+      - ./configs:/data/conf
+#    logging:
+#      driver: loki
+#      options:
+#        loki-url: 'http://db.kylan.pro:3100/api/prom/push'

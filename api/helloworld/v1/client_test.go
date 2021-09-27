@@ -25,10 +25,13 @@ func TestClient(t *testing.T) {
 	}
 	client1 := NewGreeterClient(c)
 	time.Sleep(1 * time.Second)
-	hello, err := client1.SayHello(context.Background(), &HelloRequest{Name: "123123"})
-	if err != nil {
-		panic(err)
-		return
+	for {
+		time.Sleep(time.Second)
+		hello, err := client1.SayHello(context.Background(), &HelloRequest{Name: "123123"})
+		if err != nil {
+			panic(err)
+			return
+		}
+		fmt.Println(hello.Message)
 	}
-	fmt.Println(hello.Message)
 }
