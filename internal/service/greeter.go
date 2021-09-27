@@ -11,14 +11,13 @@ import (
 
 // GreeterService is a greeter service.
 type GreeterService struct {
-	Name string
-	uc   *biz.GreeterUsecase
-	log  *log.Helper
+	uc  *biz.GreeterUsecase
+	log *log.Helper
 }
 
 // NewGreeterService new a greeter service.
 func NewGreeterService(uc *biz.GreeterUsecase, logger log.Logger) *GreeterService {
-	return &GreeterService{Name: v1.ServiceNameOfGreeter, uc: uc, log: log.NewHelper(logger)}
+	return &GreeterService{uc: uc, log: log.NewHelper(logger)}
 }
 
 // SayHello implements helloworld.GreeterServer

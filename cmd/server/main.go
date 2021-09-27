@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	v1 "github.com/kykira/kratos-layout/api/helloworld/v1"
 	"github.com/kykira/kratos-rpcx-transport/rpcx"
 	"os"
 
@@ -11,6 +12,8 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/kykira/kratos-layout/internal/conf"
 )
+import consul "github.com/go-kratos/consul/registry"
+import "github.com/hashicorp/consul/api"
 
 // go build -ldflags "-X main.Version=x.y.z"
 var (
@@ -29,15 +32,24 @@ func init() {
 }
 
 func newApp(logger log.Logger, xs *rpcx.Server) *kratos.App {
+	client, err := api.NewClient(&api.Config{
+		Address: "127.0.0.1:8500",
+		//Scheme:     "http",
+		//Datacenter: "dc1",
+	})
+	if err != nil {
+		panic(err)
+	}
 	return kratos.New(
 		kratos.ID(id),
-		kratos.Name(Name),
+		kratos.Name(v1.ServiceNameOfGreeter),
 		kratos.Version(Version),
 		kratos.Metadata(map[string]string{}),
 		kratos.Logger(logger),
 		kratos.Server(
 			xs,
 		),
+		kratos.Registrar(consul.New(client)),
 	)
 }
 
