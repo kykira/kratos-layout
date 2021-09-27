@@ -2,15 +2,13 @@ module github.com/kykira/kratos-layout
 
 go 1.17
 
-replace github.com/kykira/kratos-rpcx-transport v0.0.0-20210926092446-cc7fc6c06521 => ../kratos-rpcx-transport
-
 require (
 	github.com/go-kratos/consul v0.1.5
 	github.com/go-kratos/kratos/v2 v2.0.5
 	github.com/gogo/protobuf v1.3.2
 	github.com/google/wire v0.5.0
 	github.com/hashicorp/consul/api v1.9.1
-	github.com/kykira/kratos-rpcx-transport v0.0.0-20210926092446-cc7fc6c06521
+	github.com/kykira/kratos-rpcx-transport v1.0.0
 	github.com/smallnest/rpcx v1.6.12-0.20210918014211-2cc3c427bc70
 	google.golang.org/genproto v0.0.0-20210924002016-3dee208752a0
 	google.golang.org/protobuf v1.27.1
