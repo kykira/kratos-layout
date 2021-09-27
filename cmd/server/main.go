@@ -32,11 +32,7 @@ func init() {
 }
 
 func newApp(logger log.Logger, xs *rpcx.Server) *kratos.App {
-	client, err := api.NewClient(&api.Config{
-		Address: "127.0.0.1:8500",
-		//Scheme:     "http",
-		//Datacenter: "dc1",
-	})
+	client, err := api.NewClient(api.DefaultConfig())
 	if err != nil {
 		panic(err)
 	}

@@ -9,6 +9,8 @@ services:
     image: kltest
     restart: always
     network_mode: host
+    environment:
+      - CONSUL_HTTP_ADDR=127.0.0.1:8500
     volumes:
       - ./configs:/data/conf
 #    logging:
