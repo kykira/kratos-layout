@@ -2,6 +2,10 @@ module github.com/kykira/kratos-layout
 
 go 1.17
 
+//replace (
+//	github.com/kykira/kratos-rpcx-transport v1.0.0 => ../kratos-rpcx-transport
+//)
+
 require (
 	github.com/go-kratos/consul v0.1.5
 	github.com/go-kratos/kratos/v2 v2.0.5

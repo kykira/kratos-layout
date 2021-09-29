@@ -13,7 +13,7 @@ services:
       - CONSUL_HTTP_ADDR=127.0.0.1:8500
     volumes:
       - ./configs:/data/conf
-#    logging:
+#    logginkubg:
 #      driver: loki
 #      options:
 #        loki-url: 'http://db.kylan.pro:3100/api/prom/push'

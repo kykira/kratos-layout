@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kltest
+spec:
+  selector:
+    matchLabels:
+      app: kltest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kltest
+    spec:
+      containers:
+        - name: kltest
+          image: kltest # Update the version of nginx from 1.14.2 to 1.16.1
+          env:
+            - name: CONSUL_HTTP_ADDR
+              value: "127.0.0.1:8500"
+          ports:
+            - containerPort: 8088
