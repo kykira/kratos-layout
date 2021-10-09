@@ -18,7 +18,6 @@ func TestClient(t *testing.T) {
 	c, err := rpcx.Dial(
 		rpcx.WithTimeout(3*time.Second),
 		rpcx.WithServerName(ServiceNameOfGreeter),
-		rpcx.WithEndpoint("0.0.0.0:9000"),
 		rpcx.WithDiscovery(dis),
 	)
 	if err != nil {
