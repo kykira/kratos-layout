@@ -4,6 +4,12 @@
 ```
 go get -u github.com/go-kratos/kratos/cmd/kratos/v2@latest
 ```
+
+## Install protoc-gen-gogorpcx
+[protoc-gen-gogorpcx](https://github.com/rpcxio/protoc-gen-gogorpcx)
+```
+go get github.com/rpcxio/protoc-gen-gogorpcx/protoc-gen-gogofaster
+```
 ## Create a service
 ```
 # Create a template project
