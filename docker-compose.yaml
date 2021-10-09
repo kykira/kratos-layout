@@ -2,18 +2,15 @@ version: "3.7"
 
 services:
 
-  kltest:
+  kratos-layout:
     build:
       dockerfile: Dockerfile
       context: ./
-    image: kltest
+    image: kratos-layout
     restart: always
-    network_mode: host
+    ports:
+      - "9000:9000"
     environment:
       - CONSUL_HTTP_ADDR=127.0.0.1:8500
     volumes:
       - ./configs:/data/conf
-#    logginkubg:
-#      driver: loki
-#      options:
-#        loki-url: 'http://db.kylan.pro:3100/api/prom/push'

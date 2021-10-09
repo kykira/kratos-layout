@@ -12,8 +12,6 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/kykira/kratos-layout/internal/conf"
 )
-import consul "github.com/go-kratos/consul/registry"
-import "github.com/hashicorp/consul/api"
 
 // go build -ldflags "-X main.Version=x.y.z"
 var (
@@ -32,10 +30,6 @@ func init() {
 }
 
 func newApp(logger log.Logger, xs *rpcx.Server) *kratos.App {
-	client, err := api.NewClient(api.DefaultConfig())
-	if err != nil {
-		panic(err)
-	}
 	return kratos.New(
 		kratos.ID(id),
 		kratos.Name(v1.ServiceNameOfGreeter),
@@ -45,7 +39,6 @@ func newApp(logger log.Logger, xs *rpcx.Server) *kratos.App {
 		kratos.Server(
 			xs,
 		),
-		kratos.Registrar(consul.New(client)),
 	)
 }
 

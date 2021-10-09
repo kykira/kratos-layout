@@ -8,7 +8,6 @@ API_PROTO_FILES=$(shell find api -name *.proto)
 init:
 	go get -u github.com/go-kratos/kratos/cmd/kratos/v2
 	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
-	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
 	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
 
@@ -36,13 +35,12 @@ api:
 	       --proto_path=./third_party \
  	       --go_out=paths=source_relative:. \
  	       --go-http_out=paths=source_relative:. \
- 	       --go-grpc_out=paths=source_relative:. \
 	       $(API_PROTO_FILES)
 
 .PHONY: build
 # build
 build:
-	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
+	mkdir -p bin/ && CGO_ENABLED=0 GOOS=linux go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
 .PHONY: generate
 # generate

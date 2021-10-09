@@ -5,20 +5,14 @@ WORKDIR /src
 
 RUN GOPROXY=https://goproxy.cn make build
 
-FROM debian:stable-slim
+FROM alpine:latest
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		ca-certificates  \
-        netbase \
-        && rm -rf /var/lib/apt/lists/ \
-        && apt-get autoremove -y && apt-get autoclean -y
-
-COPY --from=builder /src/bin /app
-COPY . /app
-WORKDIR /app
+COPY --from=builder /src/bin /data
+COPY ./configs /data/conf
+WORKDIR /data
 
 #EXPOSE 8000
-#EXPOSE 9000
-VOLUME /data/conf
+EXPOSE 9000
+#VOLUME /data/conf
 
-CMD ["./server", "-conf", "/app/configs"]
+CMD ["./server", "-conf", "/data/conf"]
